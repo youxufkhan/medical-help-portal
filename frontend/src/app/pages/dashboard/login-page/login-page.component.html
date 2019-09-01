@@ -1,0 +1,18 @@
+<nb-layout center>
+    <nb-layout-header>Awesome Company</nb-layout-header>
+    <nb-layout-column></nb-layout-column>
+    <nb-layout-column center>
+      <nb-card>
+          <nb-card-header>Login</nb-card-header>
+        <nb-card-body class="example-items-col">
+          <input type="text" nbInput fullWidth placeholder="Username" [(ngModel)]="username"><br>
+          <input type="password" nbInput fullWidth placeholder="Password" [(ngModel)]="password"><br>
+        </nb-card-body>
+        <nb-card-footer>
+            <button nbButton status="warning" (click)="register()">Register</button>
+            <button nbButton status="danger" (click)="login()">Login</button></nb-card-footer>
+      </nb-card>
+    </nb-layout-column>
+
+    <nb-layout-column></nb-layout-column>
+</nb-layout>
