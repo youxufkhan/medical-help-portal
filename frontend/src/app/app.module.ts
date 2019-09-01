@@ -1,38 +1,69 @@
-/**
- * @license
- * Copyright Akveo. All Rights Reserved.
- * Licensed under the MIT License. See License.txt in the project root for license information.
- */
-import { APP_BASE_HREF } from '@angular/common';
+// import * as $ from 'jquery';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {
+  CommonModule,
+  LocationStrategy,
+  PathLocationStrategy
+} from '@angular/common';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-import { CoreModule } from './@core/core.module';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { Routes, RouterModule } from '@angular/router';
 
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { ThemeModule } from './@theme/theme.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpService } from './services/http/http.service';
-import { WebSocketService } from './services/websocket.service';
+
+import { FullComponent } from './layouts/full/full.component';
+
+import { NavigationComponent } from './shared/header-navigation/navigation.component';
+import { SidebarComponent } from './shared/sidebar/sidebar.component';
+import { BreadcrumbComponent } from './shared/breadcrumb/breadcrumb.component';
+
+
+import { Approutes } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { SpinnerComponent } from './shared/spinner.component';
+
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
+import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
+
+const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
+  suppressScrollX: true,
+  wheelSpeed: 1,
+  wheelPropagation: true,
+  minScrollbarLength: 20
+};   
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    SpinnerComponent,
+    FullComponent,
+    NavigationComponent,
+    SidebarComponent,
+    BreadcrumbComponent
+  ],
   imports: [
+    CommonModule,
     BrowserModule,
     BrowserAnimationsModule,
+    FormsModule,
     HttpClientModule,
-    AppRoutingModule,
-
+	PerfectScrollbarModule,
     NgbModule.forRoot(),
-    ThemeModule.forRoot(),
-    CoreModule.forRoot(),
+    RouterModule.forRoot(Approutes, { useHash: false })
   ],
-  bootstrap: [AppComponent],
   providers: [
-    { provide: APP_BASE_HREF, useValue: '/' }, HttpService, WebSocketService
+    {
+      provide: LocationStrategy,
+      useClass: PathLocationStrategy
+    },
+	{
+      provide: PERFECT_SCROLLBAR_CONFIG,
+      useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG
+    }
   ],
+  bootstrap: [AppComponent]
 })
-export class AppModule {
-}
+export class AppModule {}

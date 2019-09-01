@@ -1,8 +1,0 @@
-<nb-card *ngFor="let msg of chat" >
-  <nb-card-header>{{msg.user}}</nb-card-header>
-    <nb-card-body>
-        {{msg.message}}
-    </nb-card-body>
-  </nb-card>
-<input type="text" nbInput fullWidth placeholder="type message here ....." [(ngModel)]="text">
-<button nbButton status="danger" (click)="emitt()" >Send</button>
