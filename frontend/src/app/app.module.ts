@@ -20,7 +20,7 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
 import { BreadcrumbComponent } from './shared/breadcrumb/breadcrumb.component';
 
 
-import { Approutes } from './app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SpinnerComponent } from './shared/spinner.component';
 
@@ -52,7 +52,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     HttpClientModule,
 	PerfectScrollbarModule,
     NgbModule.forRoot(),
-    RouterModule.forRoot(Approutes, { useHash: false })
+    AppRoutingModule
+    // RouterModule.forRoot(Approutes, { useHash: false })
   ],
   providers: [
     {
