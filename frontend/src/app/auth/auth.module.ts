@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { AuthGuard } from './auth-guard';
 import { ReactiveFormsModule} from '@angular/forms';
 
 
@@ -13,6 +12,6 @@ import { ReactiveFormsModule} from '@angular/forms';
     CommonModule,
     ReactiveFormsModule
   ],
-  providers:[AuthGuard]
+  providers:[]
 })
 export class AuthModule { }
